@@ -1,10 +1,10 @@
 ![Java CI](https://github.com/L0615T1C5-216AC-9437/warnings/workflows/Java%20CI/badge.svg)
 ### Description
 w warning plugin.  
-Warns when someone changes names and evades a kick.
+Warns when someone changes names or evades a kick.
 ### Downloading a Jar
 1) go to [releases](https://github.com/L0615T1C5-216AC-9437/warnings/releases) and download latest version, (not recommended to use pre-releases)
-2) follow [#Installing](https://github.com/L0615T1C5-216AC-9437/warnings/blob/master/README.md#installing)
+2) follow [#Installing](https://github.com/L0615T1C5-216AC-9437/warnings#installing)
 
 ### Building a Jar
 
