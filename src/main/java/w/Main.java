@@ -14,7 +14,7 @@ import mindustry.plugin.Plugin;
 
 import java.util.HashMap;
 
-import static mindustry.Vars.netServer;
+import static mindustry.Vars.*;
 
 public class Main extends Plugin {
     //Var
@@ -29,6 +29,31 @@ public class Main extends Plugin {
         Thread c = new Cycle(Thread.currentThread());
         c.setDaemon(false);
         c.start();
+
+        Events.on(EventType.BlockBuildEndEvent.class, event -> {
+            Player player = event.player;
+            if (player == null) return;
+            if (event.tile.block().name.toLowerCase().equals("melter")) {
+                int x1 = event.tile.x-20;
+                int x2 = event.tile.x+20;
+                int y1 = event.tile.y-20;
+                int y2 = event.tile.y+20;
+
+                if (x1 < 0) x1 = 0;
+                if (y1 < 0) y1 = 0;
+                if (x2 >= world.width()) x2 = world.width()-1;
+                if (y2 >= world.height()) y2 = world.height()-1;
+
+                for (int x = x1; x <= x2; x++) {
+                    for (int y = y1; y <= y2; y++) {
+                        if (world.tile(x,y).floor().name.toLowerCase().equals("tar")) {
+                            Call.sendMessage("[scarlet]> [#"+player.color+"]"+player.name+" [scarlet]builds melter near oil! ("+x+","+y+")");
+                            return;
+                        }
+                    }
+                }
+            }
+        });
 
         Events.on(EventType.PlayerJoin.class, event -> {
             Player player = event.player;
